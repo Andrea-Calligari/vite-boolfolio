@@ -4,14 +4,30 @@ export default {
   data() {
     return {
       projects: [],
+      currentPage : 1,
+      lastPage : null
     }
   },
   methods: {
     fetchProjects() {
-      axios.get('http://127.0.0.1:8000/api/projects').then((res) => {
-        this.projects = res.data.projects
-         console.log(this.projects) 
+      axios.get('http://127.0.0.1:8000/api/projects',{ 
+        params: {
+          page: this.currentPage,
+
+        }
+      
+      
+      
+      }).then((res) => {
+        this.projects = res.data.projects.data
+        this.lastPage = res.data.projects.last_page
+        //  console.log(this.lastPage) 
       })
+    },
+    setPage(n){
+      if(n === this.currentPage) return 
+      this.currentPage = n
+      this.fetchProjects()
     }
   },
   created() {
@@ -48,6 +64,9 @@ export default {
     </div>
 
   </div>
+  <ul class="list-unstyled justify-content-center align-items-center d-flex gap-3">
+    <li @click="setPage(n)" class="fs-2 " :class="n === this.currentPage ? 'bg-warning' : ''" v-for="n in lastPage" :key="n">{{ n }}</li>
+  </ul>
 
 
 </template>
