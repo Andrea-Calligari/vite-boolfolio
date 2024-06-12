@@ -1,8 +1,8 @@
-<script >
+<script>
 import AppCard from './components/AppCard.vue';
 export default {
-  data(){
-    return{
+  data() {
+    return {
       message: 'ciao bello! Guarda qua'
     }
   },
@@ -13,10 +13,12 @@ export default {
 </script>
 
 <template>
-  <h1>{{ message }}</h1>
-<AppCard />
+ <h1 class="text-center py-5">Ecco i miei progetti!</h1>
+  <section class="py-3">
+
+    <AppCard />
+  </section>
 </template>
 
-<style scoped>
-
+<style lang="scss" scoped>
 </style>
