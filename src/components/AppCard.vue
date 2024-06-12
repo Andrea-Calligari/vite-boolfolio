@@ -10,7 +10,7 @@ export default {
     fetchProjects() {
       axios.get('http://127.0.0.1:8000/api/projects').then((res) => {
         this.projects = res.data.projects
-        // console.log(this.projects) 
+         console.log(this.projects) 
       })
     }
   },
@@ -22,17 +22,24 @@ export default {
 
 <template>
   <div class="container">
-    <div class="d-flex justify-content-center align-items-center flex-wrap ">
-      <div v-for="project in projects" :key="project.id" class="col-4 p-3">
+    <div class="row">
+      <div v-for="project in projects" :key="project.id" class="col-6 p-3">
         <div class="card">
           <div class="card-header">
-            <h3> Titolo :{{ project.project_name }}</h3>
+            
+            <h4> {{ project.project_name }}</h4>
 
           </div>
           <div class="card-body">
             <p> Descrizione: {{ project.description }}</p>
             <p> Ore di lavoro {{ project.working_hours }}</p>
             <p> Collaboratori : {{ project.co_workers }}</p>
+            <ul class="list-unstyled d-flex gap-2">
+              <span>Tecnologie usate:</span>
+              <li class="bg-warning p-1  border-rounded" v-for="technologies in project.technologies" :key="technologies.id"> {{ technologies.name }}</li>
+
+            </ul>
+            <p v-if="project.type "> tipo :{{ project.type.name }}</p>
 
           </div>
         </div>
