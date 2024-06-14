@@ -33,4 +33,5 @@ export default {
 </template>
 
 <style lang="scss">
-//@use 'bootstrap';</style>
+//@use 'bootstrap';
+</style>
